@@ -17,14 +17,18 @@ interface ReceiveSentenceAction {
     type: 'RECEIVE_SENTENCE';
     sentence: string;
 }
+
 type KnownAction = RequestSentenceAction | ReceiveSentenceAction;
 
 // ACTION CREATORS - These are functions exposed to UI components that will trigger a state transition.
 export const actionCreators = {
     requestSentence: (): AppThunkAction<KnownAction> => (dispatch, getState) => {
-        fetch(API_URL)
+        const params = '?limitTo=[' + getState().filters.filters
+            .filter(filter => filter.selected)
+            .map(filter => filter.value) + ']';
+        fetch(API_URL + params)
             .then(response => response.json())
-            .then((response: any) =>
+            .then((response) =>
                 dispatch(
                     {
                         type: 'RECEIVE_SENTENCE',
