@@ -1,37 +1,50 @@
 import * as React from 'react';
 import { SentenceDumb } from '../components/Sentence';
-// import { Filters } from '../components/Filters';
-import { connect } from 'react-redux';
+import { Filters } from '../components/Filters';
+import { connect, Dispatch } from 'react-redux';
 import { ApplicationState } from '../store';
+import * as Redux from 'redux';
 import * as SentenceStore from '../store/Sentence';
+import * as FilterStore from '../store/Filter';
 
-type SentenceProps = SentenceStore.SentenceState & typeof SentenceStore.actionCreators;
-class Sentence extends React.Component<SentenceProps, any> {
-    constructor(props: any) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
+type SentenceActionsCreators = typeof SentenceStore.actionCreators &
+    typeof FilterStore.actionCreators;
 
+type SentenceProps = SentenceStore.SentenceState &
+    FilterStore.FilterState & SentenceActionsCreators;
+
+class Sentence extends React.Component<SentenceProps, {}> {
     componentDidMount() {
-        // this.props.fetchFilters();
+        this.props.requestFilters();
     }
 
     render() {
         return (
             <div className="cn-sentence">
-                <button onClick={this.handleClick}>{`Get it!`}</button>
-                <SentenceDumb sentence={this.props.sentence} />
-                {/* <Filters filters={this.props.filters} toggleFilter={this.props.toggleFilter}/> */}
+                <button onClick={() => this.props.requestSentence()}>{`Get it!`}</button>
+                {<SentenceDumb sentence={this.props.sentence} />}
+                {<Filters filters={this.props.filters} toggleFilter={this.props.toggleFilter} />}
             </div>
         );
     }
 
-    private handleClick() {
-        this.props.requestSentence();
-    }
+}
+
+function mapStateToProps(state: ApplicationState) {
+    return { sentence: state.sentence.sentence, filters: state.filters.filters };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<SentenceActionsCreators>) {
+    const boundActionCreators = Redux.bindActionCreators(
+        {
+            ...SentenceStore.actionCreators,
+            ...FilterStore.actionCreators
+        },
+        dispatch);
+    return boundActionCreators;
 }
 
 export default connect(
-    (state: ApplicationState) => state.sentence,
-    SentenceStore.actionCreators
+    mapStateToProps,
+    mapDispatchToProps
 )(Sentence);
