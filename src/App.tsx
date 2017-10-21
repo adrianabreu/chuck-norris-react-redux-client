@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 import { Header } from './components/Header';
 import Sentence from './containers/Sentence';
+import Historical from './containers/Historical';
 
 class App extends React.Component {
   render() {
@@ -11,6 +12,7 @@ class App extends React.Component {
         <div className="cn-sentence">
           <Sentence />
         </div>
+        <Historical />
       </div>
     );
   }
