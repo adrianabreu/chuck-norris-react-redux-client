@@ -1,9 +1,13 @@
 import { Reducer } from 'redux';
 import { Sentence } from './Sentence';
+import { Filter } from './Filter';
+import { AppThunkAction } from './';
 
 // STATE 
 export interface HistoricalState {
     sentences: Sentence[];
+    visibleSentences: Sentence[];
+    historicalFilter: Filter[];
 }
 
 // ACTIONS
@@ -12,19 +16,68 @@ export interface AddSentenceAction {
     sentence: Sentence;
 }
 
-type KnownAction = AddSentenceAction;
+export interface ToggleFilterAction {
+    type: 'TOGGLE_HISTORICAL_FILTER';
+    index: number;
+}
+
+type KnownAction = AddSentenceAction & ToggleFilterAction;
+
+export const actionCreators = {
+    toggleFilter: (index: number): AppThunkAction<ToggleFilterAction> => (dispatch, getState) => {
+        dispatch({
+            type: 'TOGGLE_HISTORICAL_FILTER',
+            index: index
+        });
+    }
+};
 
 // REDUCERS
 export const reducer: Reducer<HistoricalState> = (state: HistoricalState, action: KnownAction) => {
 
     switch (action.type) {
         case 'ADD_SENTENCE':
-            let sentences = [...state.sentences];
-            if (state.sentences.indexOf(action.sentence) === -1) {
-                sentences = [...sentences, action.sentence];
-            }
-            return { sentences };
+            let sentences = [...state.sentences, action.sentence];
+            let sentenceCategories: Filter[] = action.sentence.categories.map(category => {
+                return {
+                    value: category,
+                    selected: false
+                };
+            });
+            const newCategories = sentenceCategories.filter(category => state.historicalFilter.filter(
+                historicalCategory => category.value === historicalCategory.value
+            ).length === 0);
+            const newFilters = [...state.historicalFilter, ...newCategories];
+            const tF = state.historicalFilter.filter(filter => filter.selected);
+            const vS = tF.length ? state.sentences.filter(sentence => {
+                return sentence.categories
+                    .filter(sentenceCat =>
+                        toggledFilters.map(filter => filter.value)
+                            .indexOf(sentenceCat))
+                    .length;
+            }) : [...sentences];
+            return {
+                historicalFilter: newFilters,
+                sentences,
+                visibleSentences: vS
+            };
+        case 'TOGGLE_HISTORICAL_FILTER':
+            const filters = [...state.historicalFilter];
+            filters[action.index].selected = !filters[action.index].selected;
+            const toggledFilters = filters.filter(filter => filter.selected);
+            const visibleSentences = toggledFilters.length ? state.sentences.filter(sentence => {
+                return sentence.categories
+                    .filter(sentenceCat =>
+                        toggledFilters.map(filter => filter.value)
+                            .indexOf(sentenceCat))
+                    .length;
+            }) : [...state.sentences];
+            return {
+                sentences: state.sentences,
+                historicalFilter: filters,
+                visibleSentences
+            };
         default:
-            return state || { sentences: [] };
+            return state || { sentences: [], visibleSentences: [], historicalFilter: [] };
     }
 };

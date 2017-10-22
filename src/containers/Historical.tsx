@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { ApplicationState } from '../store';
-import { HistoricalState } from '../store/Historical';
+import * as HistoricalStore from '../store/Historical';
+import { Filters } from '../components/Filters';
+import { connect, Dispatch } from 'react-redux';
+import * as Redux from 'redux';
 
-type HistoricalProps = HistoricalState;
+type HistoricalActionsCreators = typeof HistoricalStore.actionCreators;
+
+type HistoricalProps = HistoricalStore.HistoricalState & HistoricalActionsCreators;
 
 class Historical extends React.Component<HistoricalProps, {}> {
     render() {
@@ -14,14 +18,16 @@ class Historical extends React.Component<HistoricalProps, {}> {
                 </div>
                 <div className="cn-historical-body">
                     {
-                        this.props.sentences.map((sentence) =>
+                        this.props.visibleSentences.map((sentence) =>
                             <div key={sentence.value} className="cn-historical-body_sentence">
                                 {sentence.value}
                             </div>
                         )
                     }
                 </div>
-                <div className="cn-historical-footer" />
+                <div className="cn-historical-footer">
+                    {<Filters filters={this.props.historicalFilter} toggleFilter={this.props.toggleFilter} />}
+                </div>
             </div>
         );
     }
@@ -29,10 +35,22 @@ class Historical extends React.Component<HistoricalProps, {}> {
 }
 
 function mapStateToProps(state: ApplicationState) {
-    console.log(state);
-    return { sentences: state.sentences.sentences };
+    return {
+        sentences: state.sentences.sentences,
+        historicalFilter: state.sentences.historicalFilter,
+        visibleSentences: state.sentences.visibleSentences
+    };
 }
 
+function mapDispatchToProps(dispatch: Dispatch<HistoricalActionsCreators>) {
+    const boundActionCreators = Redux.bindActionCreators(
+        {
+            ...HistoricalStore.actionCreators
+        },
+        dispatch);
+    return boundActionCreators;
+}
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Historical);

@@ -33,7 +33,6 @@ type KnownAction = RequestFilterAction | ReceiveFilterAction | ToggleFilterActio
 // ACTION CREATORS - These are functions exposed to UI components that will trigger a state transition.
 export const actionCreators = {
     requestFilters: (): AppThunkAction<KnownAction> => (dispatch, getState) => {
-        console.log('Hi?');
         fetch(API_URL)
             .then(response => response.json())
             .then((response: any) =>
@@ -62,7 +61,6 @@ export const reducer: Reducer<FilterState> = (state: FilterState, action: KnownA
                     selected: false
                 };
             });
-            console.log(transformedFilters);
             return {
                 filters: transformedFilters
             };

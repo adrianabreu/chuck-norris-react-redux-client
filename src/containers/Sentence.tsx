@@ -2,8 +2,8 @@ import * as React from 'react';
 import { SentenceDumb } from '../components/Sentence';
 import { Filters } from '../components/Filters';
 import { connect, Dispatch } from 'react-redux';
-import { ApplicationState } from '../store';
 import * as Redux from 'redux';
+import { ApplicationState } from '../store';
 import * as SentenceStore from '../store/Sentence';
 import * as FilterStore from '../store/Filter';
 
