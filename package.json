@@ -2,6 +2,7 @@
   "name": "chuck-norris-react-redux-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://adrianabreu.com/chuck-norris-react-redux-client",
   "dependencies": {
     "@types/react-redux": "^5.0.9",
     "autoprefixer": "7.1.2",
