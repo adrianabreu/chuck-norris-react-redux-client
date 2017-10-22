@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './App.css';
+import './App.scss';
 import { Header } from './components/Header';
 import Sentence from './containers/Sentence';
 import Historical from './containers/Historical';

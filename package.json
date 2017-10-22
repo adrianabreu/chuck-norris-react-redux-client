@@ -50,7 +50,9 @@
     "@types/jest": "^20.0.8",
     "@types/node": "^8.0.28",
     "@types/react": "16.0.16",
-    "@types/react-dom": "^16.0.2"
+    "@types/react-dom": "^16.0.2",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6"
   },
   "jest": {
     "mapCoverage": true,
