@@ -25,7 +25,11 @@ export interface CleanHistoricalAction {
     type: 'CLEAN_HISTORICAL';
 }
 
-type KnownAction = AddSentenceAction & ToggleFilterAction;
+export interface ClearHistoricalFilters {
+    type: 'CLEAR_HISTORICAL_FILTERS';
+}
+
+type KnownAction = AddSentenceAction & ToggleFilterAction & CleanHistoricalAction & ClearHistoricalFilters;
 
 export const actionCreators = {
     toggleFilter: (index: number): AppThunkAction<ToggleFilterAction> => (dispatch, getState) => {
@@ -37,6 +41,11 @@ export const actionCreators = {
     cleanHistorical: (): AppThunkAction<CleanHistoricalAction> => (dispatch, getState) => {
         dispatch({
             type: 'CLEAN_HISTORICAL'
+        });
+    },
+    clearFilters: (): AppThunkAction<ClearHistoricalFilters> => (dispatch, getState) => {
+        dispatch({
+            type: 'CLEAR_HISTORICAL_FILTERS'
         });
     }
 };
@@ -92,6 +101,18 @@ export const reducer: Reducer<HistoricalState> = (state: HistoricalState, action
                 sentences: [],
                 historicalFilter: [],
                 visibleSentences: []
+            };
+        case 'CLEAR_HISTORICAL_FILTERS':
+            const untoggledFilters: Filter[] = state.historicalFilter.map(filter => {
+                return {
+                    value: filter.value,
+                    selected: false
+                };
+            });
+            return {
+                sentences: [...state.sentences],
+                historicalFilter: untoggledFilters,
+                visibleSentences: [...state.sentences]
             };
         default:
             return state || { sentences: [], visibleSentences: [], historicalFilter: [] };

@@ -23,7 +23,11 @@ class Sentence extends React.Component<SentenceProps, {}> {
             <div className="cn-sentence">
                 <button onClick={() => this.props.requestSentence()}>{`Get it!`}</button>
                 {<SentenceDumb sentence={this.props.sentence} />}
-                {<Filters filters={this.props.filters} toggleFilter={this.props.toggleFilter} />}
+                {<Filters
+                    filters={this.props.filters}
+                    toggleFilter={this.props.toggleFilter}
+                    clearFilters={this.props.clearFilters}
+                />}
             </div>
         );
     }

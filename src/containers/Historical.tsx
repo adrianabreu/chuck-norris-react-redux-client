@@ -26,7 +26,11 @@ class Historical extends React.Component<HistoricalProps, {}> {
                     }
                 </div>
                 <div className="cn-historical-footer">
-                    {<Filters filters={this.props.historicalFilter} toggleFilter={this.props.toggleFilter} />}
+                    {<Filters
+                        filters={this.props.historicalFilter}
+                        toggleFilter={this.props.toggleFilter}
+                        clearFilters={this.props.clearFilters}
+                    />}
                 </div>
             </div>
         );

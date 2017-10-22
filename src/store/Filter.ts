@@ -28,7 +28,11 @@ interface ToggleFilterAction {
     index: number;
 }
 
-type KnownAction = RequestFilterAction | ReceiveFilterAction | ToggleFilterAction;
+interface ClearFiltersAction {
+    type: 'CLEAR_FILTERS';
+}
+
+type KnownAction = RequestFilterAction | ReceiveFilterAction | ToggleFilterAction | ClearFiltersAction;
 
 // ACTION CREATORS - These are functions exposed to UI components that will trigger a state transition.
 export const actionCreators = {
@@ -46,6 +50,11 @@ export const actionCreators = {
         dispatch({
             type: 'TOGGLE_FILTER',
             index: index
+        });
+    },
+    clearFilters: (): AppThunkAction<ClearFiltersAction> => (dispatch, getState) => {
+        dispatch({
+            type: 'CLEAR_FILTERS'
         });
     }
 };
@@ -69,6 +78,16 @@ export const reducer: Reducer<FilterState> = (state: FilterState, action: KnownA
             filters[action.index].selected = !filters[action.index].selected;
             return {
                 filters
+            };
+        case 'CLEAR_FILTERS':
+            const untoggledFilters: Filter[] = state.filters.map(filter => {
+                return {
+                    value: filter.value,
+                    selected: false
+                };
+            });
+            return {
+                filters: untoggledFilters
             };
         default:
             return state || { filters: [] };

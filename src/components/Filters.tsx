@@ -2,7 +2,8 @@ import * as React from 'react';
 import * as FilterStore from '.././store/Filter';
 
 type FilterDispatchProps = {
-    toggleFilter: (index: number) => void
+    toggleFilter: (index: number) => void,
+    clearFilters: () => void
 };
 
 type FilterProps = FilterStore.FilterState & FilterDispatchProps;
@@ -22,6 +23,7 @@ export class Filters extends React.Component<FilterProps, {}> {
                         </button>;
                     })
                 }
+                <button onClick={() => this.props.clearFilters()}>clear filters</button>
             </div>
         );
     }
