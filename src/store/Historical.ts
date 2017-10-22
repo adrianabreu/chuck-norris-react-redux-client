@@ -67,10 +67,11 @@ export const reducer: Reducer<HistoricalState> = (state: HistoricalState, action
             const toggledFilters = filters.filter(filter => filter.selected);
             const visibleSentences = toggledFilters.length ? state.sentences.filter(sentence => {
                 return sentence.categories
-                    .filter(sentenceCat =>
-                        toggledFilters.map(filter => filter.value)
-                            .indexOf(sentenceCat))
-                    .length;
+                    .filter(sentenceCat => {
+                        return toggledFilters.map(filter => filter.value)
+                            .indexOf(sentenceCat) !== -1;
+                    }
+                    ).length === toggledFilters.length;
             }) : [...state.sentences];
             return {
                 sentences: state.sentences,
