@@ -9,7 +9,7 @@ import {
     ReducersMapObject
 } from 'redux';
 import thunk from 'redux-thunk';
-// import * as StoreModule from './store';
+import { persistStore, autoRehydrate } from 'redux-persist';
 import { ApplicationState, reducers } from './store';
 
 export default function configureStore(initialState?: ApplicationState) {
@@ -19,12 +19,14 @@ export default function configureStore(initialState?: ApplicationState) {
     const devToolsExtension = windowIfDefined && windowIfDefined.devToolsExtension as () => GenericStoreEnhancer;
     const createStoreWithMiddleware = compose(
         applyMiddleware(thunk),
+        autoRehydrate(),
         devToolsExtension ? devToolsExtension() : <S>(next: StoreEnhancerStoreCreator<S>) => next
     )(createStore);
 
     // Combine all reducers and instantiate the app-wide store instance
     const allReducers = buildRootReducer(reducers);
     const store = createStoreWithMiddleware(allReducers, initialState) as Store<ApplicationState>;
+    persistStore(store);
     return store;
 }
 
