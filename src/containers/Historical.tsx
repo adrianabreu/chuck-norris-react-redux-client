@@ -14,7 +14,7 @@ class Historical extends React.Component<HistoricalProps, {}> {
         return (
             <div className="cn-historical">
                 <div className="cn-historical-header">
-                    Historical
+                    Historical <button onClick={() => this.props.cleanHistorical()}>Clean</button>
                 </div>
                 <div className="cn-historical-body">
                     {
