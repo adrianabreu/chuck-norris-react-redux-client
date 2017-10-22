@@ -19,9 +19,11 @@ class Historical extends React.Component<HistoricalProps, {}> {
                 <div className="cn-historical-body">
                     {
                         this.props.visibleSentences.map((sentence) =>
-                            <div key={sentence.value} className="cn-historical-body_sentence">
-                                {sentence.value}
-                            </div>
+                            <div
+                                key={sentence.value}
+                                className="cn-historical-body_sentence"
+                                dangerouslySetInnerHTML={{ __html: sentence.value }}
+                            />
                         )
                     }
                 </div>
