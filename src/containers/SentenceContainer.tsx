@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { SentenceDumb } from '../components/Sentence';
-import { Filters } from '../components/Filters';
+import { Sentence } from '../components/Sentence';
 import { connect, Dispatch } from 'react-redux';
 import * as Redux from 'redux';
 import { ApplicationState } from '../store';
@@ -13,7 +12,7 @@ type SentenceActionsCreators = typeof SentenceStore.actionCreators &
 type SentenceProps = SentenceStore.SentenceState &
     FilterStore.FilterState & SentenceActionsCreators;
 
-class Sentence extends React.Component<SentenceProps, {}> {
+class SentenceContainer extends React.Component<SentenceProps, {}> {
     componentDidMount() {
         this.props.requestFilters();
     }
@@ -21,13 +20,15 @@ class Sentence extends React.Component<SentenceProps, {}> {
     render() {
         return (
             <div className="cn-sentence">
-                <button onClick={() => this.props.requestSentence()}>{`Get it!`}</button>
-                {<SentenceDumb sentence={this.props.sentence} />}
-                {<Filters
-                    filters={this.props.filters}
-                    toggleFilter={this.props.toggleFilter}
-                    clearFilters={this.props.clearFilters}
-                />}
+                {
+                    <Sentence
+                        sentence={this.props.sentence}
+                        requestSentence={this.props.requestSentence}
+                        filters={this.props.filters}
+                        toggleFilter={this.props.toggleFilter}
+                        clearFilters={this.props.clearFilters}
+                    />
+                }
             </div>
         );
     }
@@ -51,4 +52,4 @@ function mapDispatchToProps(dispatch: Dispatch<SentenceActionsCreators>) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Sentence);
+)(SentenceContainer);

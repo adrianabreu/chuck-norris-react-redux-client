@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './App.scss';
 import { Header } from './components/Header';
-import Sentence from './containers/Sentence';
-import Historical from './containers/Historical';
+import SentenceContainer from './containers/SentenceContainer';
+import HistoricalContainer from './containers/HistoricalContainer';
 
 class App extends React.Component {
   render() {
@@ -10,9 +10,9 @@ class App extends React.Component {
       <div className="cn">
         <Header />
         <div className="cn-sentence">
-          <Sentence />
+          <SentenceContainer />
         </div>
-        <Historical />
+        <HistoricalContainer />
       </div>
     );
   }
