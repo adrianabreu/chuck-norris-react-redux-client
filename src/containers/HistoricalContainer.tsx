@@ -1,40 +1,25 @@
 import * as React from 'react';
 import { ApplicationState } from '../store';
 import * as HistoricalStore from '../store/Historical';
-import { Filters } from '../components/Filters';
+import { Historical } from '../components/Historical';
 import { connect, Dispatch } from 'react-redux';
 import * as Redux from 'redux';
 
 type HistoricalActionsCreators = typeof HistoricalStore.actionCreators;
 
-type HistoricalProps = HistoricalStore.HistoricalState & HistoricalActionsCreators;
+export type HistoricalContainerProps = HistoricalStore.HistoricalState & HistoricalActionsCreators;
 
-class Historical extends React.Component<HistoricalProps, {}> {
+class HistoricalContainer extends React.Component<HistoricalContainerProps, {}> {
     render() {
         return (
-            <div className="cn-historical">
-                <div className="cn-historical-header">
-                    Historical <button onClick={() => this.props.cleanHistorical()}>Clean</button>
-                </div>
-                <div className="cn-historical-body">
-                    {
-                        this.props.visibleSentences.map((sentence) =>
-                            <div
-                                key={sentence.value}
-                                className="cn-historical-body_sentence"
-                                dangerouslySetInnerHTML={{ __html: sentence.value }}
-                            />
-                        )
-                    }
-                </div>
-                <div className="cn-historical-footer">
-                    {<Filters
-                        filters={this.props.historicalFilter}
-                        toggleFilter={this.props.toggleFilter}
-                        clearFilters={this.props.clearFilters}
-                    />}
-                </div>
-            </div>
+            <Historical
+                sentences={this.props.visibleSentences}
+                visibleSentences={this.props.visibleSentences}
+                clearHistorical={this.props.clearHistorical}
+                historicalFilter={this.props.historicalFilter}
+                toggleFilter={this.props.toggleFilter}
+                clearFilters={this.props.clearFilters}
+            />
         );
     }
 
@@ -59,4 +44,4 @@ function mapDispatchToProps(dispatch: Dispatch<HistoricalActionsCreators>) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Historical);
+)(HistoricalContainer);
