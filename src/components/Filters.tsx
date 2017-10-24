@@ -18,12 +18,21 @@ export class Filters extends React.Component<FilterProps, {}> {
             <div className="btn-group">
                 {
                     this.props.filters.map((filter: FilterStore.Filter, i: number) => {
-                        return <button key={filter.value} onClick={() => this.props.toggleFilter(i)}>
+                        return <button
+                            className={`btn ${filter.selected ? 'btn--active' : ''}`}
+                            key={filter.value}
+                            onClick={() => this.props.toggleFilter(i)}
+                        >
                             {filter.value}
                         </button>;
                     })
                 }
-                <button onClick={() => this.props.clearFilters()}>clear filters</button>
+                <button
+                    className={`btn btn-secondary`}
+                    onClick={() => this.props.clearFilters()}
+                >
+                    clear filters
+                </button>
             </div>
         );
     }

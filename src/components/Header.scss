@@ -1,0 +1,8 @@
+@import '../scss/variables';
+
+.cn-navbar {
+    background: $color-brand;
+    &_title {
+        color: white;
+    }
+}

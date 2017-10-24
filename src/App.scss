@@ -1,1 +1,9 @@
+@import './components/Sentence';
 @import './components/Historical';
+@import './components/Filters';
+@import './components/Header';
+
+.cn {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
