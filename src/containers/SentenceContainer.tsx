@@ -9,14 +9,10 @@ import * as FilterStore from '../store/Filter';
 type SentenceActionsCreators = typeof SentenceStore.actionCreators &
     typeof FilterStore.actionCreators;
 
-type SentenceProps = SentenceStore.SentenceState &
+export type SentenceContainerProps = SentenceStore.SentenceState &
     FilterStore.FilterState & SentenceActionsCreators;
 
-class SentenceContainer extends React.Component<SentenceProps, {}> {
-    componentDidMount() {
-        this.props.requestFilters();
-    }
-
+class SentenceContainer extends React.Component<SentenceContainerProps, {}> {
     render() {
         return (
             <div className="cn-sentence">
@@ -27,6 +23,7 @@ class SentenceContainer extends React.Component<SentenceProps, {}> {
                         filters={this.props.filters}
                         toggleFilter={this.props.toggleFilter}
                         clearFilters={this.props.clearFilters}
+                        requestFilters={this.props.requestFilters}
                     />
                 }
             </div>
