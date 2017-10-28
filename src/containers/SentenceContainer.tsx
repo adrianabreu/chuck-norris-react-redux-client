@@ -15,18 +15,14 @@ export type SentenceContainerProps = SentenceStore.SentenceState &
 class SentenceContainer extends React.Component<SentenceContainerProps, {}> {
     render() {
         return (
-            <div className="cn-sentence">
-                {
-                    <Sentence
-                        sentence={this.props.sentence}
-                        requestSentence={this.props.requestSentence}
-                        filters={this.props.filters}
-                        toggleFilter={this.props.toggleFilter}
-                        clearFilters={this.props.clearFilters}
-                        requestFilters={this.props.requestFilters}
-                    />
-                }
-            </div>
+            <Sentence
+                sentence={this.props.sentence}
+                requestSentence={this.props.requestSentence}
+                filters={this.props.filters}
+                toggleFilter={this.props.toggleFilter}
+                clearFilters={this.props.clearFilters}
+                requestFilters={this.props.requestFilters}
+            />
         );
     }
 

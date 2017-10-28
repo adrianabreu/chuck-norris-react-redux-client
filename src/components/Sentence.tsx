@@ -15,7 +15,9 @@ export class Sentence extends React.Component<SentenceProps, {}> {
         return (
             <div className="cn-sentence">
                 <div className="cn-sentence-header">
-                    <button onClick={() => this.props.requestSentence()}>{`Get it!`}</button>
+                    <button className="btn btn-default" onClick={() => this.props.requestSentence()}>
+                        {`Get it!`}
+                    </button>
                 </div>
                 <div className="cn-sentence-body">
                     <div
@@ -23,7 +25,7 @@ export class Sentence extends React.Component<SentenceProps, {}> {
                         dangerouslySetInnerHTML={{ __html: this.props.sentence.value }}
                     />
                 </div>
-                <div className="cn-sentencefooter">
+                <div className="cn-sentence-footer">
                     {<Filters
                         filters={this.props.filters}
                         toggleFilter={this.props.toggleFilter}

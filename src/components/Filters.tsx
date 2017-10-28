@@ -15,11 +15,11 @@ export class Filters extends React.Component<FilterProps, {}> {
 
     render() {
         return (
-            <div className="btn-group">
+            <div className="btn-group cn-sentence-filter">
                 {
                     this.props.filters.map((filter: FilterStore.Filter, i: number) => {
                         return <button
-                            className={`btn ${filter.selected ? 'btn--active' : ''}`}
+                            className={`btn cn-sentence-filter_button ${filter.selected ? 'btn--active' : ''}`}
                             key={filter.value}
                             onClick={() => this.props.toggleFilter(i)}
                         >
@@ -28,7 +28,7 @@ export class Filters extends React.Component<FilterProps, {}> {
                     })
                 }
                 <button
-                    className={`btn btn-secondary`}
+                    className={`btn cn-sentence-filter_button btn-secondary`}
                     onClick={() => this.props.clearFilters()}
                 >
                     clear filters

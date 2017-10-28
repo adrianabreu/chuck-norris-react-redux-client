@@ -1,3 +1,26 @@
 .cn-historical {
-    background: red;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    margin-bottom: .5rem;
+    &-header {
+        border-bottom: 1px solid #DDDDDD;
+        position: relative;
+        padding: .625rem 1rem;
+        line-height: 1.875rem;
+        &_button {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    &-body {
+        padding: .5rem 1rem;
+        &_sentence {
+            border: 1px solid #DDDDDD;
+            padding: .5rem;
+            text-align: center;
+            font-size: .875rem;
+        }
+    }
 }

@@ -9,9 +9,7 @@ class App extends React.Component {
     return (
       <div className="cn">
         <Header />
-        <div className="cn-sentence">
-          <SentenceContainer />
-        </div>
+        <SentenceContainer />
         <HistoricalContainer />
       </div>
     );

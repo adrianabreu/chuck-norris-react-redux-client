@@ -7,7 +7,13 @@ export class Historical extends React.Component<HistoricalProps, {}> {
         return (
             <div className="cn-historical">
                 <div className="cn-historical-header">
-                    Historical <button onClick={() => this.props.clearHistorical()}>Clean</button>
+                    Historical
+                    <button
+                        className="cn-historical-header_button btn btn-default"
+                        onClick={() => this.props.clearHistorical()}
+                    >
+                        clear history
+                    </button>
                 </div>
                 <div className="cn-historical-body">
                     {

@@ -1,0 +1,9 @@
+.cn-sentence-filter {
+    &.btn-group {
+        display: flex;
+    }
+
+    &_button.btn {
+        flex: 1 1 auto;
+    }
+}

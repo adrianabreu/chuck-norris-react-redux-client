@@ -1,0 +1,23 @@
+@import '../scss/variables';
+
+.cn-sentence {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    margin-bottom: .5rem;
+
+    &-header {
+        .btn {
+            width: 100%;
+        }
+    }
+
+    &-body {
+        margin: 1.5rem;
+        text-align: center;
+
+        &_sentence {
+            font-size: $font-size-lg;
+            font-style: italic;
+        }
+    }
+}
