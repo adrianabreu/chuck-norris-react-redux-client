@@ -19,7 +19,9 @@ export class Filters extends React.Component<FilterProps, {}> {
                 {
                     this.props.filters.map((filter: FilterStore.Filter, i: number) => {
                         return <button
-                            className={`btn cn-sentence-filter_button ${filter.selected ? 'btn--active' : ''}`}
+                            className={`cn-sentence-filter_button 
+                            btn btn-default 
+                            ${filter.selected ? 'btn--active' : ''}`}
                             key={filter.value}
                             onClick={() => this.props.toggleFilter(i)}
                         >

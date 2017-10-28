@@ -3,7 +3,16 @@
         display: flex;
     }
 
-    &_button.btn {
-        flex: 1 1 auto;
+    &_button {
+        &.btn {
+            cursor: pointer;
+            flex: 1 1 auto;
+            &--active {
+                background-color: #2C3E50;
+                &:hover {
+                    background-color: #0D1318;
+                }
+            }
+        }
     }
 }

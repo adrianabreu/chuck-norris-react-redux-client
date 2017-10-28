@@ -15,3 +15,26 @@ $theme-colors: (
 @import '../../../node_modules/bootstrap/scss/buttons';
 @import '../../../node_modules/bootstrap/scss/button-group';
 @import '../../../node_modules/bootstrap/scss/card';
+
+.btn {
+    &.btn-default {
+        background-color: #95A5A6;
+        color: white;
+        &:hover {
+            background-color: #798D8F;
+        }
+    }
+
+    &.btn-secondary {
+        background-color: white;
+        color: #95A5A6;
+        border-color: #95A5A6;
+
+        &:not([disabled]):not(.disabled):active {
+            color: initial;
+            background-color: initial;
+            border-color: none;
+            box-shadow: none;
+        }
+    }
+}

@@ -6,6 +6,8 @@
     margin-bottom: .5rem;
 
     &-header {
+        background-color: #ECF0F1;
+        padding: .625rem 1rem;
         .btn {
             width: 100%;
         }
@@ -18,6 +20,11 @@
         &_sentence {
             font-size: $font-size-lg;
             font-style: italic;
+        }
+
+        &_author {
+            margin-top: .875rem;
+            font-size: $font-size-sm;
         }
     }
 }
