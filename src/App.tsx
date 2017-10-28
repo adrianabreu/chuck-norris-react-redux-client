@@ -4,7 +4,7 @@ import { Header } from './components/Header';
 import SentenceContainer from './containers/SentenceContainer';
 import HistoricalContainer from './containers/HistoricalContainer';
 
-class App extends React.Component {
+export class App extends React.Component {
   render() {
     return (
       <div className="cn">
