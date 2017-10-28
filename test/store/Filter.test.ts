@@ -7,7 +7,7 @@ describe('Filters reducer', () => {
         });
     });
 
-    it('Should add filters', () => {
+    it('should add filters', () => {
         expect(reducer(undefined, {})).toEqual({
             filters: []
         });
