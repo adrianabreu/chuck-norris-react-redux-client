@@ -28,6 +28,15 @@ jobs:
 
       - run: npm install
       - run: npm run build
+      - run:
+        name: "JavaScript Test Suite"
+        environment:
+          JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
+          command: npm run test-cov -- --ci --testResultsProcessor="jest-junit"
+      - store_test_results:
+        path: reports/junit
+      - store_artifacts:
+        path: reports/junit
       - add_ssh_keys
       - deploy:
           command: cd ~/repo/build && git init && git checkout -b gh-pages && git config --local user.name "Horus" && git config --local user.email "me@adrianabreu.com" && git add . && git commit -m "New release" && git push -f -u git@github.com:adrianabreu/chuck-norris-react-redux-client.git gh-pages
