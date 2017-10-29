@@ -97,7 +97,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "C:\\Users\\koten\\chuck-norris-react-redux-client\\tsconfig.test.json"
+        "tsConfigFile": "tsconfig.test.json"
       }
     }
   },
