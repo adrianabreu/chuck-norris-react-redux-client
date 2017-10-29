@@ -32,7 +32,7 @@ jobs:
           name: "JavaScript Test Suite"
           environment:
             JEST_JUNIT_OUTPUT: reports/junit/js-test-results.xml
-            command: npm run test-cov -- --ci --testResultsProcessor="jest-junit"
+          command: npm run test-cov -- --ci --testResultsProcessor="jest-junit"
       - store_test_results:
           path: reports/junit
       - store_artifacts:
