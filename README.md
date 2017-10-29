@@ -1,3 +1,6 @@
+[![tests][tests]][tests-url]
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -2162,3 +2165,7 @@ To resolve this:
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+
+
+[tests]: https://circleci.com/gh/adrianabreu/chuck-norris-react-redux-client.svg?style=svg
+[tests-url]: https://circleci.com/gh/adrianabreu/chuck-norris-react-redux-client
