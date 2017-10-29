@@ -2,7 +2,15 @@ import { reducer } from '../../src/store/Historical';
 
 describe('Historical reducer', () => {
     it('should return the initial state', () => {
-        expect(reducer(undefined, {})).toEqual({
+        const state = {
+            sentences: [],
+            visibleSentences: [],
+            historicalFilter: []
+        };
+        const action = {
+            type: 'NOT_SUPPORTED_ACTION'
+        };
+        expect(reducer(state, action)).toEqual({
             sentences: [],
             visibleSentences: [],
             historicalFilter: []

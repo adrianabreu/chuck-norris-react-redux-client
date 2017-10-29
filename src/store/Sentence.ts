@@ -69,6 +69,11 @@ export const reducer: Reducer<SentenceState> = (state: SentenceState, action: Kn
                 sentence: action.sentence
             };
         default:
-            return state || { sentence: '' };
+            return state || {
+                sentence: {
+                    value: '',
+                    categories: []
+                }
+            };
     }
 };
