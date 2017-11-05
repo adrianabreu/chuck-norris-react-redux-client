@@ -78,7 +78,6 @@ describe('Historical reducer', () => {
         });
     });
 
-
     it('should filter the visible sentences on  historical', () => {
         const state = {
             sentences: [
