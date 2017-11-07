@@ -44,4 +44,4 @@ function mapDispatchToProps(dispatch: Dispatch<HistoricalActionsCreators>) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(HistoricalContainer as any);
+)(HistoricalContainer);

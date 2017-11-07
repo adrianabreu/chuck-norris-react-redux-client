@@ -45,4 +45,4 @@ function mapDispatchToProps(dispatch: Dispatch<SentenceActionsCreators>) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(SentenceContainer as any);
+)(SentenceContainer);
