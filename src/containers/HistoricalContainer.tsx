@@ -13,7 +13,7 @@ class HistoricalContainer extends React.Component<HistoricalContainerProps, {}> 
     render() {
         return (
             <Historical
-                sentences={this.props.visibleSentences}
+                sentences={this.props.sentences}
                 visibleSentences={this.props.visibleSentences}
                 clearHistorical={this.props.clearHistorical}
                 historicalFilter={this.props.historicalFilter}
@@ -44,4 +44,4 @@ function mapDispatchToProps(dispatch: Dispatch<HistoricalActionsCreators>) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(HistoricalContainer);
+)(HistoricalContainer as any);
