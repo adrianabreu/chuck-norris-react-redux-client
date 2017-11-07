@@ -1,6 +1,6 @@
 ## Chuck Norris React Redux Client 
 
-[![tests][tests]][tests-url]
+[![tests]][tests-url]
 
 ![App executing](/assets/exec.gif)
 
@@ -21,5 +21,5 @@ This app has been tested using Jest, while there are not Component tests (by now
 
 
 
-[tests]: https://circleci.com/gh/adrianabreu/chuck-norris-react-redux-client.svg?style=svg
+[tests]: https://circleci.com/gh/adrianabreu/chuck-norris-react-redux-client.svg
 [tests-url]: https://circleci.com/gh/adrianabreu/chuck-norris-react-redux-client
